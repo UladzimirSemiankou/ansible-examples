@@ -6,9 +6,6 @@ Example contents:
 - [demo playbook](strategy_example.yml)
 - [sample inventory](inventory)
 
-To run this example you should add a couple of hosts to the inventory
-and configure connectivity between ansible host and these hosts.
-
 Example of a linear strategy (default):
 ```sh
 strategy:linear
@@ -17,50 +14,50 @@ strategy:linear
 $ ansible-playbook strategy_example.yml
 ```
 ```sh
-PLAY ***************************************************************************
+PLAY [all] ******************************************************************************************
 
-TASK [setup] *******************************************************************
-ok: [localhost]
-ok: [35.184.194.164]
-ok: [35.184.156.100]
+TASK [Gathering Facts] ******************************************************************************
+ok: [host3]
+ok: [host1]
+ok: [host2]
 
-TASK [First step] **************************************************************
-ok: [localhost] => {
+TASK [First step] ***********************************************************************************
+ok: [host1] => {
     "msg": "Step 1. Something is done here"
 }
-ok: [35.184.194.164] => {
+ok: [host2] => {
     "msg": "Step 1. Something is done here"
 }
-ok: [35.184.156.100] => {
+ok: [host3] => {
     "msg": "Step 1. Something is done here"
 }
 
-TASK [Second step] *************************************************************
-ok: [localhost] => {
+TASK [Second step] **********************************************************************************
+ok: [host1] => {
     "msg": "Step 2. Something is done here"
 }
-ok: [35.184.194.164] => {
+ok: [host2] => {
     "msg": "Step 2. Something is done here"
 }
-ok: [35.184.156.100] => {
+ok: [host3] => {
     "msg": "Step 2. Something is done here"
 }
 
-TASK [Third step] **************************************************************
-ok: [localhost] => {
+TASK [Third step] ***********************************************************************************
+ok: [host1] => {
     "msg": "Step 3. Something is done here"
 }
-ok: [35.184.194.164] => {
+ok: [host2] => {
     "msg": "Step 3. Something is done here"
 }
-ok: [35.184.156.100] => {
+ok: [host3] => {
     "msg": "Step 3. Something is done here"
 }
 
-PLAY RECAP *********************************************************************
-35.184.156.100             : ok=4    changed=0    unreachable=0    failed=0   
-35.184.194.164             : ok=4    changed=0    unreachable=0    failed=0   
-localhost                  : ok=4    changed=0    unreachable=0    failed=0   
+PLAY RECAP ******************************************************************************************
+host1                      : ok=4    changed=0    unreachable=0    failed=0   
+host2                      : ok=4    changed=0    unreachable=0    failed=0   
+host3                      : ok=4    changed=0    unreachable=0    failed=0   
 
 ```
 
@@ -73,65 +70,49 @@ strategy:free
 $ ansible-playbook strategy_example.yml
 ```
 ```sh
-PLAY ***************************************************************************
+PLAY [all] ******************************************************************************************
 
-TASK [setup] *******************************************************************
+TASK [Gathering Facts] ******************************************************************************
+ok: [host2]
+ok: [host1]
+ok: [host3]
 
-TASK [setup] *******************************************************************
-
-TASK [setup] *******************************************************************
-ok: [localhost]
-
-TASK [First step] **************************************************************
-ok: [localhost] => {
+TASK [First step] ***********************************************************************************
+ok: [host2] => {
+    "msg": "Step 1. Something is done here"
+}
+ok: [host1] => {
+    "msg": "Step 1. Something is done here"
+}
+ok: [host3] => {
     "msg": "Step 1. Something is done here"
 }
 
-TASK [Second step] *************************************************************
-ok: [localhost] => {
+TASK [Second step] **********************************************************************************
+ok: [host2] => {
+    "msg": "Step 2. Something is done here"
+}
+ok: [host1] => {
+    "msg": "Step 2. Something is done here"
+}
+ok: [host3] => {
     "msg": "Step 2. Something is done here"
 }
 
-TASK [Third step] **************************************************************
-ok: [localhost] => {
+TASK [Third step] ***********************************************************************************
+ok: [host2] => {
     "msg": "Step 3. Something is done here"
 }
-ok: [35.184.194.164]
-ok: [35.184.156.100]
-
-TASK [First step] **************************************************************
-
-TASK [First step] **************************************************************
-ok: [35.184.194.164] => {
-    "msg": "Step 1. Something is done here"
-}
-ok: [35.184.156.100] => {
-    "msg": "Step 1. Something is done here"
-}
-
-TASK [Second step] *************************************************************
-
-TASK [Second step] *************************************************************
-ok: [35.184.194.164] => {
-    "msg": "Step 2. Something is done here"
-}
-ok: [35.184.156.100] => {
-    "msg": "Step 2. Something is done here"
-}
-
-TASK [Third step] **************************************************************
-
-TASK [Third step] **************************************************************
-ok: [35.184.156.100] => {
+ok: [host1] => {
     "msg": "Step 3. Something is done here"
 }
-ok: [35.184.194.164] => {
+ok: [host3] => {
     "msg": "Step 3. Something is done here"
 }
 
-PLAY RECAP *********************************************************************
-35.184.156.100             : ok=4    changed=0    unreachable=0    failed=0   
-35.184.194.164             : ok=4    changed=0    unreachable=0    failed=0   
-localhost                  : ok=4    changed=0    unreachable=0    failed=0   
+PLAY RECAP ******************************************************************************************
+host1                      : ok=4    changed=0    unreachable=0    failed=0   
+host2                      : ok=4    changed=0    unreachable=0    failed=0   
+host3                      : ok=4    changed=0    unreachable=0    failed=0   
 
 ```

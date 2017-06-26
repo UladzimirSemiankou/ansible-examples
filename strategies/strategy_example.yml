@@ -1,6 +1,7 @@
 ---
 - hosts: all
-  strategy: linear
+  connection: local
+  strategy: free
   tasks:
     - name: "First step"
       debug: msg="Step 1. Something is done here"
